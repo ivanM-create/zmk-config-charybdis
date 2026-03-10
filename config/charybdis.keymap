@@ -1,7 +1,6 @@
 #include <dt-bindings/zmk/mouse.h>
 #include <behaviors/mouse_keys.dtsi>
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
@@ -172,7 +171,7 @@
         combo_gaming_toggle {
             timeout-ms = <50>;
             key-positions = <49 55 54>;
-            bindings = <&tog GAMING>;
+            bindings = <&tog 0>;
         };
     };
 
@@ -202,11 +201,11 @@
             label = "BASE";
             display-name = "Base";
             bindings = <
-&kp ESC    &kp N1       &kp N2       &kp N3        &kp N4         &kp N5     &kp N6          &kp N7              &kp N8            &kp N9           &kp N0          &none
-&kp TAB    &kp Q        &kp W        &kp E         &kp R          &kp T               &kp Y  &kp U               &kp I             &kp O            &kp P           &kp BSLH
-&kp RCTRL  &kp A        &kp S        &kp D         &kp F          &kp G               &kp H  &kp J               &kp K             &kp L            &kp SEMI        &kp SQT
-&kp LSFT   &hml LGUI Z  &hml LALT X  &hml LCTRL C  &hml LSHIFT V  &kp B               &kp N  &hmr RSHIFT M       &hmr RCTRL COMMA  &hmr RALT DOT    &hmr RGUI FSLH  &none
-           &lalt_dt     &mo LOWER    &mo POINTER   &gui_ctrlb     &kp LCTRL  &kp RET         &blt SYMBOLS SPACE                    &blt RAISE BSPC
+&kp ESC         &kp N1  &kp N2    &kp N3            &kp N4     &kp N5    &kp N6          &kp N7         &kp N8     &kp N9         &kp N0     &kp LEFT_BRACKET
+&kp TAB         &kp Q   &kp W     &kp E             &kp R      &kp T              &kp Y  &kp U          &kp I      &kp O          &kp P      &kp RIGHT_BRACKET
+&kp LEFT_SHIFT  &kp A   &kp S     &kp D             &kp F      &kp G              &kp H  &kp J          &kp K      &kp L          &kp SEMI   &kp SQT
+&kp LCTRL       &kp Z   &kp X     &kp C             &kp V      &kp B              &kp N  &kp M          &kp COMMA  &kp DOT        &kp SLASH  &kp MINUS
+                &to 1   &mkp MB1  &kp LEFT_COMMAND  &kp SPACE  &mkp MB2  &kp RET         &kp BACKSPACE             &kp RIGHT_ALT
             >;
         };
 
@@ -214,47 +213,11 @@
             label = "POINTER";
             display-name = "Pointer";
             bindings = <
-&kp GRAVE    &kp F1           &kp F2           &kp F3            &kp F4             &kp F5      &kp F6                   &kp F7               &kp F8          &kp F9         &kp F10         &trans
-&kp LA(TAB)  &kp LGUI         &kp LALT         &mo SNIPING       &mkp MB4           &mkp MB5            &kp HOME         &kp PG_DN            &kp PG_UP       &kp END        &kp F11         &kp F12
-&kp RCTRL    &kp LG(A)        &ctrl_cmd_hold   &mkp RCLK         &mkp LCLK          &mkp MCLK           &kp LEFT         &kp DOWN             &kp UP          &kp RIGHT      &kp MINUS       &kp EQUAL
-&kp LSFT     &hml LGUI LG(Z)  &hml LALT LG(X)  &hml LCTRL LG(C)  &hml LSHIFT LG(V)  &mo SCROLL          &kp RC(LS(TAB))  &hmr RSHIFT LC(TAB)  &hmr RCTRL INS  &hmr RALT INS  &hmr RGUI LBKT  &kp RBKT
-             &trans           &trans           &trans            &trans             &trans      &trans                   &trans                               &trans
-            >;
-        };
-
-        lower_layer {
-            label = "LOWER";
-            display-name = "Lower";
-            bindings = <
-&kp ESC   &CAC F1  &CAC F2  &CAC F3  &CAC F4  &CAC F5  &CAC F6                     &CAC F7        &CAC F8    &CAC F9  &CAC F10  &trans
-&none     &CA Q    &CA W    &CA E    &CA R    &CA T             &CA Y              &CA U          &CA I      &CA O    &CAC F11  &CAC F12
-&kp CAPS  &CA A    &CA S    &CA D    &CA F    &CA G             &CA H              &CA J          &CA K      &CA L    &CA SEMI  &CA SQT
-&trans    &CA Z    &CA X    &CA C    &CA V    &CSA F1           &kp LS(LG(GRAVE))  &kp LG(GRAVE)  &CA COMMA  &CA DOT  &CA FSLH  &trans
-          &trans   &trans   &trans   &trans   &trans   &trans                      &trans                    &trans
-            >;
-        };
-
-        raise_layer {
-            label = "RAISE";
-            display-name = "Raise";
-            bindings = <
-&kp ESC  &kp F1  &kp F2      &kp F3        &kp F4         &kp F5         &kp F6                &kp F7          &kp F8        &kp F9        &kp F10  &trans
-&trans   &trans  &CAC W      &kp C_VOL_UP  &kp LG(MINUS)  &kp LG(EQUAL)          &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &kp F11  &kp F12
-&trans   &none   &kp C_PREV  &kp C_PP      &kp C_NEXT     &kp LG(N0)             &kp F23       &kp F24         &none         &none         &none    &bootloader
-&trans   &none   &none       &kp C_VOL_DN  &none          &none                  &bt BT_CLR    &bt BT_CLR_ALL  &none         &none         &none    &none
-         &trans  &trans      &trans        &trans         &trans         &trans                &trans                        &trans
-            >;
-        };
-
-        symbols_layer {
-            label = "SYMBOLS";
-            display-name = "Symbols";
-            bindings = <
-&kp GRAVE  &trans     &trans     &trans     &trans     &trans     &trans             &trans     &trans    &trans    &trans     &trans
-&kp TILDE  &kp SQT    &kp LT     &kp GT     &kp DQT    &kp DOT            &kp COMMA  &kp AMPS   &kp LBKT  &kp RBKT  &kp PRCNT  &trans
-&trans     &kp EXCL   &kp MINUS  &kp PLUS   &kp EQUAL  &kp UNDER          &kp PIPE   &kp COLON  &kp LPAR  &kp RPAR  &kp QMARK  &trans
-&trans     &kp CARET  &kp FSLH   &kp ASTRK  &kp BSLH   &kp HASH           &kp TILDE  &kp DLLR   &kp LBRC  &kp RBRC  &kp AT     &trans
-           &trans     &trans     &trans     &trans     &trans     &trans             &trans               &trans
+&kp F1             &kp F2     &kp F3    &kp F4            &kp F5     &kp F6    &kp F7            &kp F8      &kp F9    &kp F10        &kp F11   &kp F12
+&kp CAPSLOCK       &kp GRAVE  &none     &none             &none      &none                &none  &none       &kp UP    &none          &none     &none
+&kp LEFT_SHIFT     &none      &none     &none             &none      &none                &none  &kp LEFT    &kp DOWN  &kp RIGHT      &none     &none
+&kp RIGHT_CONTROL  &none      &none     &none             &none      &none                &none  &none       &none     &none          &kp PIPE  &kp EQUAL
+                   &to 0      &mkp MB1  &kp LEFT_COMMAND  &kp SPACE  &mkp MB2  &kp ENTER         &kp DELETE            &kp RIGHT_ALT
             >;
         };
 
@@ -267,30 +230,6 @@
 &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans
         &trans  &trans  &trans  &trans  &trans  &trans          &trans          &trans
-            >;
-        };
-
-        sniping_layer {
-            label = "SNIPING";
-            display-name = "Sniping";
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans
-        &trans  &trans  &trans  &trans  &trans  &trans          &trans          &trans
-            >;
-        };
-
-        gaming_layer {
-            label = "GAMING";
-            display-name = "Gaming";
-            bindings = <
-&kp ESC  &kp N1     &kp N2  &kp N3     &kp N4  &kp N5  &kp N6         &kp N7  &kp N8     &kp N9   &kp N0    &kp DEL
-&kp T    &kp TAB    &kp Q   &kp W      &kp E   &kp R           &kp Y  &kp U   &kp I      &kp O    &kp P     &kp BSLH
-&kp G    &kp LSFT   &kp A   &kp S      &kp D   &kp F           &kp H  &kp J   &kp K      &kp L    &kp SEMI  &kp SQT
-&kp B    &kp LCTRL  &kp Z   &kp X      &kp C   &kp V           &kp N  &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp RSFT
-         &trans     &trans  &kp SPACE  &trans  &trans  &trans         &trans             &trans
             >;
         };
     };
